@@ -1,10 +1,15 @@
 import React from 'react'
 import {
+  Button,
   Card,
+  CardActions,
   CardActionArea,
   CardContent,
-  CardMedia
+  CardMedia,
+  IconButton
 } from '@material-ui/core'
+import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
 
 function GameCard () {
   return (
@@ -18,6 +23,10 @@ function GameCard () {
           Team Fortress 2
         </CardContent>
       </CardActionArea>
+      <CardActions>
+        <Button startIcon={<PlayArrowIcon />}>Launch</Button>
+        <IconButton><MoreVertIcon /></IconButton>
+      </CardActions>
     </Card>
   )
 }
