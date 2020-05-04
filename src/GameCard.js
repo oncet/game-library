@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import {
   Card,
   CardActionArea,
   CardContent,
   CardMedia
-} from '@material-ui/core';
+} from '@material-ui/core'
 
-function GameCard() {
+function GameCard () {
   return (
     <Card>
       <CardActionArea>
@@ -19,7 +19,7 @@ function GameCard() {
         </CardContent>
       </CardActionArea>
     </Card>
-  );
+  )
 }
 
-export default GameCard;
+export default GameCard
