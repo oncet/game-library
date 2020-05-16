@@ -14,7 +14,8 @@ function Body () {
         {ownedGames.map(ownedGame => (
           <Grid key={ownedGame.appid} item xs={6} sm={4} md={2}>
             <GameCard game={ownedGame} />
-          </Grid>))}
+          </Grid>
+        ))}
       </Grid>
     </Box>
   )
