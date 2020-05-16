@@ -1,51 +1,79 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import {
-  Button,
   Card,
-  CardActions,
   CardActionArea,
-  CardContent,
+  CardHeader,
   CardMedia,
   IconButton,
   Menu,
   MenuItem
 } from '@material-ui/core'
-import PlayArrowIcon from '@material-ui/icons/PlayArrow'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
-  actions: {
-    justifyContent: 'space-between'
+  cardHeaderAction: {
+    marginTop: 0
+  },
+  cardHeaderContent: {
+    minWidth: 0
+  },
+  cardHeaderTitle: {
+    fontSize: '1rem',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap'
   }
 })
 
-function GameCard () {
+function GameCard ({ game }) {
   const [anchorEl, setAnchorEl] = useState()
   const classes = useStyles()
-  const handleOnClick = event => setAnchorEl(event.currentTarget)
-  const handleOnClose = () => setAnchorEl()
+
+  const handleOnClick = event => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleOnClose = () => {
+    setAnchorEl()
+  }
+
   return (
     <Card>
       <CardActionArea>
         <CardMedia
           component="img"
-          image="/logo512.png"
+          image={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_logo_url}.jpg`}
         />
-        <CardContent>
-          Team Fortress 2
-        </CardContent>
       </CardActionArea>
-      <CardActions className={classes.actions}>
-        <Button startIcon={<PlayArrowIcon />}>Launch</Button>
-        <IconButton onClick={handleOnClick}><MoreVertIcon /></IconButton>
-        <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleOnClose}>
-          <MenuItem onClick={handleOnClose}>Open directory</MenuItem>
-          <MenuItem onClick={handleOnClose}>Remove</MenuItem>
-        </Menu>
-      </CardActions>
+      <CardHeader
+        action={
+          <IconButton onClick={handleOnClick} size="small">
+            <MoreVertIcon />
+          </IconButton>
+        }
+        classes={{
+          action: classes.cardHeaderAction,
+          content: classes.cardHeaderContent,
+          title: classes.cardHeaderTitle
+        }}
+        title={game.name}
+      />
+      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleOnClose}>
+        <MenuItem onClick={handleOnClose}>Open directory</MenuItem>
+        <MenuItem onClick={handleOnClose}>Remove</MenuItem>
+      </Menu>
     </Card>
   )
+}
+
+GameCard.propTypes = {
+  game: PropTypes.shape({
+    appid: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    img_logo_url: PropTypes.string
+  }).isRequired
 }
 
 export default GameCard
