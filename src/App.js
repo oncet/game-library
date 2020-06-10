@@ -4,7 +4,7 @@ import Header from './Header'
 import Body from './Body'
 
 function App () {
-  const [filter, setFilter] = useState()
+  const [filter, setFilter] = useState('')
   return (
     <Container>
       <Header onFilterChange={setFilter} />

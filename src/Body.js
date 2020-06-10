@@ -42,7 +42,9 @@ function Body ({ filter }) {
   return (
     <Box mt={2}>
       <Grid container spacing={2}>
-        {games.slice(0, 60).map(games => (
+        {games.slice(0, 60).filter(game => (
+          game.name.toLowerCase().includes(filter.toLowerCase())
+        )).map(games => (
           <Grid key={games.appid} item xs={6} sm={4} md={2}>
             <GameCard game={games} />
           </Grid>
