@@ -13,7 +13,7 @@ const getCookieValueByName = name => document.cookie && document.cookie
   .find(row => row.startsWith(name))
   .split('=')[1]
 
-function Body () {
+function Body ({ filter }) {
   const [games, setGames] = useState()
   const userId = getCookieValueByName('userId')
   useEffect(() => {

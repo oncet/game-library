@@ -1,11 +1,18 @@
-import React from 'react'
-import { AppBar, Toolbar } from '@material-ui/core'
+import React, { useCallback } from 'react'
+import {
+  AppBar,
+  InputBase,
+  Toolbar
+} from '@material-ui/core'
 
-function Header () {
+function Header ({ onFilterChange }) {
+  const handleOnChange = useCallback((event) => {
+    onFilterChange(event.target.value)
+  }, [onFilterChange])
   return (
     <AppBar>
       <Toolbar>
-        Hi
+        <InputBase fullWidth placeholder="Filter" onChange={handleOnChange} />
       </Toolbar>
     </AppBar>
   )
