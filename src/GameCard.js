@@ -7,7 +7,8 @@ import {
   CardMedia,
   IconButton,
   Menu,
-  MenuItem
+  MenuItem,
+  Link
 } from '@material-ui/core'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
 import { makeStyles } from '@material-ui/core/styles'
@@ -42,10 +43,12 @@ function GameCard ({ game }) {
   return (
     <Card>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          image={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_logo_url}.jpg`}
-        />
+        <Link target="_blank" rel="noopener" href={`steam://run/${game.appid}`}>
+          <CardMedia
+            component="img"
+            image={`http://media.steampowered.com/steamcommunity/public/images/apps/${game.appid}/${game.img_logo_url}.jpg`}
+          />
+        </Link>
       </CardActionArea>
       <CardHeader
         action={
